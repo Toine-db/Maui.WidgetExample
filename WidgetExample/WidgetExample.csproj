@@ -41,6 +41,8 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>-->
 	</PropertyGroup>
 
+
+
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
@@ -63,5 +65,25 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.8" />
 	</ItemGroup>
+
+    <!-- iOS Widget Extensions -->
+    <ItemGroup Condition="$(TargetFramework.Contains('-ios'))">
+
+        <!-- include iOS Widget Extension files must be copied to output for the macOS Buildhost to find them -->
+        <Content Condition="'$(ComputedPlatform)' == 'iPhone'" Include=".\Platforms\iOS\WidgetExtensions\Release-iphoneos\MyWidgetExtension.appex\**" CopyToOutputDirectory="PreserveNewest" />
+        <Content Condition="'$(ComputedPlatform)' == 'iPhoneSimulator'" Include=".\Platforms\iOS\WidgetExtensions\Release-iphonesimulator\MyWidgetExtension.appex\**" CopyToOutputDirectory="PreserveNewest" />
+
+        <!-- iOS Widget Extensions -->
+        <AdditionalAppExtensions Include="$(MSBuildProjectDirectory)/Platforms/iOS/WidgetExtensions">
+            <!-- the appex file without the .appex suffix -->
+            <Name>MyWidgetExtension</Name>
+            <BuildOutput Condition="'$(ComputedPlatform)' == 'iPhone'">Release-iphoneos</BuildOutput>
+            <BuildOutput Condition="'$(ComputedPlatform)' == 'iPhoneSimulator'">Release-iphonesimulator</BuildOutput>
+
+            <!-- entitlements for the appex, without this the shared storage won't work -->
+            <!--<CodesignEntitlements>Platforms/iOS/Entitlements.MyWidgetExtension.plist</CodesignEntitlements>-->
+        </AdditionalAppExtensions>
+
+    </ItemGroup>
 
 </Project>

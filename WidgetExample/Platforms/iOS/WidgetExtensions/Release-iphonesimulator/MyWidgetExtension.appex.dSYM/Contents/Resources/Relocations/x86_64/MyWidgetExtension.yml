@@ -1,0 +1,5 @@
+---
+triple:          'x86_64-apple-darwin'
+binary-path:     '/Users/toinedeboer/repos/Maui.WidgetExample/XCodeWidgetExample/XReleases/Release-iphonesimulator/MyWidgetExtension.appex/MyWidgetExtension'
+relocations:     []
+...
