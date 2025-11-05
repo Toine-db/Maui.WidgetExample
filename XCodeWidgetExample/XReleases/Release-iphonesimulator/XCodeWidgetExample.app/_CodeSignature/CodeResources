@@ -14,11 +14,11 @@
 		</data>
 		<key>PlugIns/MyWidgetExtension.appex/Info.plist</key>
 		<data>
-		hOn786DNL21ULUATBIg7e6fXhaE=
+		nWHS4idtaJPHSuObVvaXTQqjNgc=
 		</data>
 		<key>PlugIns/MyWidgetExtension.appex/Metadata.appintents/extract.actionsdata</key>
 		<data>
-		YFZj+9QpcdIsli1BRl728qOZNCI=
+		7LcWkVhpzhMn7hpOeM8+lk6Uxc0=
 		</data>
 		<key>PlugIns/MyWidgetExtension.appex/Metadata.appintents/version.json</key>
 		<data>
@@ -26,11 +26,11 @@
 		</data>
 		<key>PlugIns/MyWidgetExtension.appex/MyWidgetExtension</key>
 		<data>
-		VOHeTschrrIMUV5KQa962q5jqa0=
+		8WxUvnF3ju5sZoC3QjNjmkaedHs=
 		</data>
 		<key>PlugIns/MyWidgetExtension.appex/_CodeSignature/CodeResources</key>
 		<data>
-		O4qAHsF794Qe9Zq7k/l3fp++KBY=
+		1K0jdi8W+2KF1XEQmAo5fn+cscc=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -39,14 +39,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			qpmQfG3JYBYO0XlndlLTrHZTQ9zw5c5QU9wvA4NBhOI=
+			j+wNYvwBwn3tpRYLLFM3nmYmDMVSP86rsbsLrxcjWwM=
 			</data>
 		</dict>
 		<key>PlugIns/MyWidgetExtension.appex/Metadata.appintents/extract.actionsdata</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			qD63JyyfmXJwF57Q5ja3IcmWbJmfNvg3dI2W+eJd0cI=
+			5XEEg5FtztO3fY9ge+kOhqavGWentincwc3LMGoAIGA=
 			</data>
 		</dict>
 		<key>PlugIns/MyWidgetExtension.appex/Metadata.appintents/version.json</key>
@@ -60,14 +60,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			6rujV8/FZvzQG7qRnG0x/3F0i9H5B47yWVB6rRoMBog=
+			v8tuqdDvpphnIsI8w+45UVeC20LNtwqe+UohvayHLPc=
 			</data>
 		</dict>
 		<key>PlugIns/MyWidgetExtension.appex/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			0Rax8eSEryRlazsP3YU03R2xhWK/RCRzhdWVb0YLF64=
+			gHLWrBtM1mDb86/TiMqOQrH+FpOlAXP+uK4qpAYbzRA=
 			</data>
 		</dict>
 	</dict>
