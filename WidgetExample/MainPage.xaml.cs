@@ -42,7 +42,16 @@
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
+			LoadIncomingData();
+		}
 
+		public void OnResumed()
+		{
+			LoadIncomingData();
+		}
+
+		private void LoadIncomingData()
+		{
 			// show incomming data if any
 			var incommingData = Preferences.Get(SharedStorageAppIncommingDataKey, int.MinValue, SharedStorageGroupId);
 			if (incommingData != int.MinValue)
