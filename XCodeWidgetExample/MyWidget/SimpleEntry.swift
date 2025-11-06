@@ -10,5 +10,7 @@ import SwiftUI
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let configuration: ConfigurationAppIntent
+    var favoriteConfiguredEmoji: String
+    let count: Int
+    let message: String
 }

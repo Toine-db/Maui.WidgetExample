@@ -9,26 +9,59 @@ import WidgetKit
 import SwiftUI
 
 struct Provider: AppIntentTimelineProvider {
+    
+    // Innitial value, nowhere visible but safe practice to show gallery preview data
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationAppIntent())
+        let entry = createPreviewEntry()
+        return entry
     }
 
+    // When Widget is first added on screen, or shown in gallery as preview
     func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: configuration)
+        let entry = createEntry(for: configuration, in: context)
+        return entry
     }
     
+    // When Widget is refreshed, this is the main method where data has to be loaded
     func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<SimpleEntry> {
         var entries: [SimpleEntry] = []
 
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
-            entries.append(entry)
-        }
+        // Normaly you can set multiple data models, to be included in a Timeline to be shown timebased
+        // For we only use a single datamodel, so the view only shows that
+        
+        let entry = createEntry(for: configuration, in: context)
+        entries.append(entry)
 
-        return Timeline(entries: entries, policy: .atEnd)
+        return Timeline(entries: entries, policy: .never)
+    }
+    
+    func createEntry(for configuration: ConfigurationAppIntent, in context: Context) -> SimpleEntry {
+        if (context.isPreview) {
+            return createPreviewEntry()
+        }
+        
+        // Load UserDefaults with GroupID, same as used in MAUI preferences
+        let userDefaults = UserDefaults(suiteName: "group.com.enbyin.WidgetExample")
+        let appoutgoing = userDefaults?.integer(forKey: "my.appoutgoing.data.key")
+        
+        var currentCount = 0
+        var message = ""
+        if (appoutgoing != nil) {
+            currentCount = appoutgoing!
+            message = "value received from app"
+        }
+        
+        let entry = SimpleEntry(date: Date(),
+                                favoriteConfiguredEmoji: configuration.favoriteEmoji,
+                                count: currentCount,
+                                message: message)
+        
+        return entry
+    }
+    
+    func createPreviewEntry() -> SimpleEntry {
+        let entry = SimpleEntry(date: Date(), favoriteConfiguredEmoji: "🤩", count: 5, message: "Preview count is 5")
+        return entry
     }
 
 //    func relevances() async -> WidgetRelevances<ConfigurationAppIntent> {

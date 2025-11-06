@@ -9,15 +9,11 @@ import WidgetKit
 import SwiftUI
 
 extension ConfigurationAppIntent {
-    static var smiley: ConfigurationAppIntent {
-        let intent = ConfigurationAppIntent()
-        intent.favoriteEmoji = "😀"
-        return intent
+    static var smiley: String {
+        return "😀"
     }
     
-    static var starEyes: ConfigurationAppIntent {
-        let intent = ConfigurationAppIntent()
-        intent.favoriteEmoji = "🤩"
-        return intent
+    static var starEyes: String {
+        return "🤩"
     }
 }
