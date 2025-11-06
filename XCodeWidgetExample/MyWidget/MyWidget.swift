@@ -23,6 +23,6 @@ struct MyWidget: Widget {
 #Preview(as: .systemSmall) {
     MyWidget()
 } timeline: {
-    SimpleEntry(date: .now, favoriteConfiguredEmoji: ConfigurationAppIntent.smiley, count: 4, message: "preview design")
-    SimpleEntry(date: .now, favoriteConfiguredEmoji: ConfigurationAppIntent.starEyes, count: 3, message: "preview design")
+    SimpleEntry(date: .now, favoriteConfiguredEmoji: ConfigurationAppIntent.smiley, widgetUrl: "", count: 4, message: "preview design")
+    SimpleEntry(date: .now, favoriteConfiguredEmoji: ConfigurationAppIntent.starEyes, widgetUrl: "", count: 3, message: "preview design")
 }

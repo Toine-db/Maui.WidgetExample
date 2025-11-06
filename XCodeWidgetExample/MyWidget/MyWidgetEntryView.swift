@@ -46,5 +46,6 @@ struct MyWidgetEntryView : View {
                 .frame(maxWidth: .infinity)
         }
         .padding()
+        .widgetURL(URL(string: entry.widgetUrl))
     }
 }

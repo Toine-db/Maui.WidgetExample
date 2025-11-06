@@ -57,6 +57,7 @@ struct Provider: AppIntentTimelineProvider {
 
         let entry = SimpleEntry(date: Date(),
                                 favoriteConfiguredEmoji: configuration.favoriteEmoji,
+                                widgetUrl: "widgetexample://widget?counter=\(currentCount)",
                                 count: currentCount,
                                 message: message)
         
@@ -64,7 +65,7 @@ struct Provider: AppIntentTimelineProvider {
     }
     
     func createPreviewEntry() -> SimpleEntry {
-        let entry = SimpleEntry(date: Date(), favoriteConfiguredEmoji: "🤩", count: 5, message: "Preview count is 5")
+        let entry = SimpleEntry(date: Date(), favoriteConfiguredEmoji: "🤩", widgetUrl: "", count: 5, message: "Preview count is 5")
         return entry
     }
 
