@@ -50,6 +50,14 @@
 			LoadIncomingData();
 		}
 
+		public void OnResumedByUrl(int incommingCount)
+		{
+			// Note: OpenUrl is called after OnResumed
+
+			Count = incommingCount;
+			Message = "value set by opening URL";
+		}
+
 		private void LoadIncomingData()
 		{
 			// show incomming data if any
@@ -67,6 +75,7 @@
 				var outgoingData = Preferences.Get(SharedStorageAppOutgoingDataKey, int.MinValue, SharedStorageGroupId);
 				if (outgoingData != int.MinValue)
 				{
+					Message = string.Empty;
 					Count = outgoingData;
 				}
 			}
