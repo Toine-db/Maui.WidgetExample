@@ -18,7 +18,7 @@
 		</data>
 		<key>PlugIns/MyWidgetExtension.appex/Metadata.appintents/extract.actionsdata</key>
 		<data>
-		9xbwqF+v03pcDZ1cwMfihadPn+M=
+		6L88KlY37913ZdVzu6tOtuR07BE=
 		</data>
 		<key>PlugIns/MyWidgetExtension.appex/Metadata.appintents/version.json</key>
 		<data>
@@ -26,19 +26,19 @@
 		</data>
 		<key>PlugIns/MyWidgetExtension.appex/MyWidgetExtension</key>
 		<data>
-		kT9fivnPh2UwMfLyRR4Qv4PWv2A=
+		nkwpLhUXmAq2dHOFMgUDoPj0srA=
 		</data>
 		<key>PlugIns/MyWidgetExtension.appex/_CodeSignature/CodeResources</key>
 		<data>
-		/tqilugfT2uc76ya3wl9KAhMh4A=
+		t6PHzTqoUbFcOne5Oe+7/63Rrek=
 		</data>
 		<key>PlugIns/MyWidgetExtension.appex/embedded.mobileprovision</key>
 		<data>
-		Vtnzk5aeLfpjQZR4liNwUgPI0QM=
+		Jc2f44X3Eb6DOTcx7QE0utBrT3Q=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
-		Vtnzk5aeLfpjQZR4liNwUgPI0QM=
+		p/4To1sfFTYAVzqBJSkip7baTmA=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -54,7 +54,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Zcfh3o6GDB7dBuj8Jutgow/SyteJx5NKo5SZcrrghIo=
+			UiXJOyUv8L6yIAJE/5AOCTliJvormxVXLuf7qr35OZY=
 			</data>
 		</dict>
 		<key>PlugIns/MyWidgetExtension.appex/Metadata.appintents/version.json</key>
@@ -68,28 +68,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			gMOvd3FudWNxVl1Ym6GIP1wUYGZ1L79L80gHlohsaFk=
+			co8gNUydnBbJDeXZsQP1dNUVsFQ6mcElBPITyu2izv0=
 			</data>
 		</dict>
 		<key>PlugIns/MyWidgetExtension.appex/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			CVpxmb/q0SxKATZfgMch2/iRstwnKF0cVIs2OVqMBi4=
+			yXQwT88ydCLj9cIeuImq7Ro7st9pSdKB7ulc5TAkppg=
 			</data>
 		</dict>
 		<key>PlugIns/MyWidgetExtension.appex/embedded.mobileprovision</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xnWQA5MZovgxgHuuPGhTN/cfvC2p10BKQmjThKD+0so=
+			GbdoS44S/Gqj01MdY5ekqmTYgdI9z8e+k2QqmOegDqM=
 			</data>
 		</dict>
 		<key>embedded.mobileprovision</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xnWQA5MZovgxgHuuPGhTN/cfvC2p10BKQmjThKD+0so=
+			ca/12CSX+Uvjkfw5ATo4lP4xzBtjiNgA4Vk3KZRxcBI=
 			</data>
 		</dict>
 	</dict>
