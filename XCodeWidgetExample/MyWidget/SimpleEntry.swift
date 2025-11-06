@@ -11,6 +11,6 @@ import SwiftUI
 struct SimpleEntry: TimelineEntry {
     let date: Date
     var favoriteConfiguredEmoji: String
-    let count: Int
+    let count: Int32
     let message: String
 }

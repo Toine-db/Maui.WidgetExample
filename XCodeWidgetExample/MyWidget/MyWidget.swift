@@ -16,6 +16,7 @@ struct MyWidget: Widget {
             MyWidgetEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
+        .supportedFamilies([.systemMedium, .systemLarge]) // Widget sizes that you support
     }
 }
 

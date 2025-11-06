@@ -40,17 +40,21 @@ struct Provider: AppIntentTimelineProvider {
             return createPreviewEntry()
         }
         
-        // Load UserDefaults with GroupID, same as used in MAUI preferences
-        let userDefaults = UserDefaults(suiteName: "group.com.enbyin.WidgetExample")
-        let appoutgoing = userDefaults?.integer(forKey: "my.appoutgoing.data.key")
-        
-        var currentCount = 0
         var message = ""
-        if (appoutgoing != nil) {
-            currentCount = appoutgoing!
-            message = "value received from app"
-        }
         
+        // not the best mechanism but for works fine for this demo
+        // - incomming data is set by Widget, has prio 1
+        // - outgoing data is set by app, has prio 2
+        // - incomming data is reset as soon as app starts, making outgoing data visible
+        var currentCount = SharedStorage().getIncommingDataCount()
+        if (currentCount == Int32.min) {
+            
+            currentCount = SharedStorage().getOutgoingDataCount()
+            if (currentCount == Int32.min) {
+                message = "value received from app"
+            }
+        }
+
         let entry = SimpleEntry(date: Date(),
                                 favoriteConfiguredEmoji: configuration.favoriteEmoji,
                                 count: currentCount,

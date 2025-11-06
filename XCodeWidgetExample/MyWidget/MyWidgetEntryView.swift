@@ -7,6 +7,7 @@
 
 import WidgetKit
 import SwiftUI
+import AppIntents
 
 struct MyWidgetEntryView : View {
     var entry: Provider.Entry
@@ -25,16 +26,14 @@ struct MyWidgetEntryView : View {
             }
             
             HStack(spacing: 8) {
-                Button(action: {
-                }) {
+                Button(intent: DecrementCounterIntent()) {
                     Text("-")
                         .font(.system(size: 40))
                         .frame(maxWidth: .infinity, minHeight: 44)
                         .cornerRadius(8)
                 }
                 
-                Button(action: {
-                }) {
+                Button(intent: IncrementCounterIntent()) {
                     Text("+")
                         .font(.system(size: 40))
                         .frame(maxWidth: .infinity, minHeight: 44)
