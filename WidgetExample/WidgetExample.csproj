@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net9.0-android;net9.0-ios</TargetFrameworks>
@@ -41,8 +41,6 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>-->
 	</PropertyGroup>
 
-
-
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
@@ -66,13 +64,24 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.8" />
 	</ItemGroup>
 
-    <!-- iOS Widget Extensions -->
+    <!-- iOS only Properties -->
+    <PropertyGroup Condition="'$(TargetFramework)'=='net9.0-ios'">
+        <CodesignEntitlements>Platforms\iOS\Entitlements.plist</CodesignEntitlements>
+        <ProvisioningType>manual</ProvisioningType>
+    </PropertyGroup>
+
+    <!-- iOS only Items -->
     <ItemGroup Condition="$(TargetFramework.Contains('-ios'))">
 
-        <!-- include iOS Widget Extension files must be copied to output for the macOS Buildhost to find them -->
+        <PackageReference Include="WidgetKit.WidgetCenterProxy" Version="9.0.3" />
+
+        <!-- include the correct iOS Widget Extension files must be copied to output for the macOS Buildhost to find them -->
+        <Content Remove="Platforms\iOS\WidgetExtensions\**" />
         <Content Condition="'$(ComputedPlatform)' == 'iPhone'" Include=".\Platforms\iOS\WidgetExtensions\Release-iphoneos\MyWidgetExtension.appex\**" CopyToOutputDirectory="PreserveNewest" />
         <Content Condition="'$(ComputedPlatform)' == 'iPhoneSimulator'" Include=".\Platforms\iOS\WidgetExtensions\Release-iphonesimulator\MyWidgetExtension.appex\**" CopyToOutputDirectory="PreserveNewest" />
 
+        <Content Include=".\Platforms\iOS\Entitlements.MyWidgetExtension.plist" CopyToOutputDirectory="PreserveNewest" />
+        
         <!-- iOS Widget Extensions -->
         <AdditionalAppExtensions Include="$(MSBuildProjectDirectory)/Platforms/iOS/WidgetExtensions">
             <!-- the appex file without the .appex suffix -->
@@ -81,7 +90,8 @@
             <BuildOutput Condition="'$(ComputedPlatform)' == 'iPhoneSimulator'">Release-iphonesimulator</BuildOutput>
 
             <!-- entitlements for the appex, without this the shared storage won't work -->
-            <!--<CodesignEntitlements>Platforms/iOS/Entitlements.MyWidgetExtension.plist</CodesignEntitlements>-->
+            <!-- when errors reading entitlements during build, store entitlements file with line-ending type LF -->
+            <CodesignEntitlements>Platforms/iOS/Entitlements.MyWidgetExtension.plist</CodesignEntitlements>
         </AdditionalAppExtensions>
 
     </ItemGroup>
