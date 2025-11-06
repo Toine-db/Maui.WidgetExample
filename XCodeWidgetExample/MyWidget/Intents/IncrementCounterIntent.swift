@@ -31,6 +31,13 @@ struct IncrementCounterIntent: AppIntent {
         // Reload timelines > refreshing widget
         WidgetCenter.shared.reloadTimelines(ofKind: "MyWidget")
         
+        // An example how to handle data without opening the app
+        do {
+            try await SilentNotificationService().sendDataWithoutOpeningApp()
+        } catch {
+            print("Error occurred: \(error)")
+        }
+        
         return .result()
     }
 }
