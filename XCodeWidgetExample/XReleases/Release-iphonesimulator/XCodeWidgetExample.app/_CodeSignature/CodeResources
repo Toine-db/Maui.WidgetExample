@@ -22,15 +22,15 @@
 		</data>
 		<key>PlugIns/MyWidgetExtension.appex/Metadata.appintents/version.json</key>
 		<data>
-		kSxBG4AkjH7gz3iMXvK2JDx3VZI=
+		TY2tWAqgMoaE49pcDLWKF8StLJ0=
 		</data>
 		<key>PlugIns/MyWidgetExtension.appex/MyWidgetExtension</key>
 		<data>
-		AF9G/Oe2BQHiHJiIZcBRQsIQV7w=
+		Nn1bMT4VrO7wPndm6GCcifJkPbs=
 		</data>
 		<key>PlugIns/MyWidgetExtension.appex/_CodeSignature/CodeResources</key>
 		<data>
-		OpaB1Bkv1lus9J+yRoWSKrHGpSo=
+		NC63Yj5zVdjB3WBXXgTHni0nN9w=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -53,21 +53,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			U78a4FzpdDBQtWWERXa1pFNZguleRB2jhjmEeUCRdy4=
+			Y056N8w2ciFNVb92lsX2dN5w8ZQHSQrKaKbrHAt2K9Q=
 			</data>
 		</dict>
 		<key>PlugIns/MyWidgetExtension.appex/MyWidgetExtension</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			dH+90DQk1d0idwxx9xGnZvaLb2pQZcdfI/qyzqpWQM4=
+			nFpIyGeqZjfLs1gikatgAF8/y2QW0BqRPIa4koKqqEw=
 			</data>
 		</dict>
 		<key>PlugIns/MyWidgetExtension.appex/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Udw6Is+GuRT1fQeBL539pVZG1hCUVjPzUStm3BftqgA=
+			H0FaUz9reQc3Gyoe0sWFpbYlK96dnw2x33vTB0OqYrw=
 			</data>
 		</dict>
 	</dict>
