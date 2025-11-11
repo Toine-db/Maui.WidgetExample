@@ -16,8 +16,16 @@ namespace WidgetExample
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
+
+            return builder.Build();
+        }
+
+        public static MauiApp CreateMinimalMauiApp()
+        {
+            var builder = MauiApp.CreateBuilder();
+            builder.UseMauiApp<App>();
 
             return builder.Build();
         }

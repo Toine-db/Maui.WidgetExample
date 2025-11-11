@@ -306,7 +306,7 @@ struct MyWidgetView : View {
 
 On iOS, a Widget can NOT communicate with the App in the background. Any direct call brings the App to the foreground. To keep the App closed and still perform work, you can use AppIntents in the Widget to call your backend. The backend can execute the action and, if needed, send a silent push notification to the App. The App can then handle the update in the background if required. This can be done with any web service and existing push notification provider; For that reason, I've included only an illustrative SilentNotificationService as entry point in the demo code rather than a full implementation.
 
-## Create a configurable Widget
+## Creating a configurable Widget
 
 Because I selected the 'Configuration App Intent' option when creating the XCode Widget extension, there is already a working system in place that allows the user to configure the widget. In the loop of creating the data model in `AppIntentTimelineProvider`, this configuration becomes available and can be processed into the data that is passed to the Widget view. It's a simple basic system that's all implemented in a `WidgetConfigurationIntent` that is specified in the `WidgetConfiguration` for the specific Widget.
 
@@ -348,4 +348,6 @@ With the interactive widget fully implemented, the next step naturally becomes r
 * Keep Xcode open for rapid build and preview cycles to catch issues early.
 * Open the Canvas view in Xcode and use #preview data so you can see visual changes quickly.
 
-If you're interested in taking your widget skills to Android, good news: an article on building Android Widgets with .NET MAUI is coming soon.
+If you’re looking to extend your widget expertise to Android, an additional article on building Android widgets with .NET MAUI is also available.
+
+[Android Interactive Widgets](article-android-widgets.md)
