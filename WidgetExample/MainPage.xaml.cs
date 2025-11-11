@@ -1,10 +1,13 @@
-﻿namespace WidgetExample
+﻿using Android.Appwidget;
+
+namespace WidgetExample
 {
 	public partial class MainPage : ContentPage
 	{
-		private const string SharedStorageGroupId = "group.com.enbyin.WidgetExample";
-		private const string SharedStorageAppIncommingDataKey = "my.appincomming.data.key";
-		private const string SharedStorageAppOutgoingDataKey = "my.appoutgoing.data.key";
+
+		public const string SharedStorageGroupId = "group.com.enbyin.WidgetExample";
+		public const string SharedStorageAppIncommingDataKey = "my.appincomming.data.key";
+		public const string SharedStorageAppOutgoingDataKey = "my.appoutgoing.data.key";
 
 		public MainPage()
 		{
@@ -109,6 +112,8 @@
 			// (probably not necessary, just in case)
 			var userDefaults = new Foundation.NSUserDefaults(SharedStorageGroupId, Foundation.NSUserDefaultsType.SuiteName);
 			userDefaults.Synchronize();
+#elif ANDROID
+			// No special action needed for Android SharedPreferences
 #endif
 		}
 
@@ -118,6 +123,22 @@
 			var widgetCenterProxy = new WidgetKit.WidgetCenterProxy();
 			//widgetCenterProxy.ReloadAllTimeLines(); // reload all widgets
 			widgetCenterProxy.ReloadTimeLinesOfKind("MyWidget"); // reload only my widgets
+#elif ANDROID
+
+			var context = Android.App.Application.Context;
+
+			// Use AppWidgetManager to get all widget IDs for this provider
+			var appWidgetManager = Android.Appwidget.AppWidgetManager.GetInstance(context);
+			var componentName = new Android.Content.ComponentName(context, Java.Lang.Class.FromType(typeof(Platforms.Android.Resources.Widgets.MyWidgetProvider)));
+			var appWidgetIds = appWidgetManager?.GetAppWidgetIds(componentName);
+
+			// Create an intent to update the widget
+			var intent = new Android.Content.Intent(AppWidgetManager.ActionAppwidgetUpdate);
+			intent.SetPackage(context.PackageName); // only widgets from this app
+			intent.PutExtra(Android.Appwidget.AppWidgetManager.ExtraAppwidgetIds, appWidgetIds); // only widgets with these IDs
+
+			// Send the broadcast to update the widget
+			context.SendBroadcast(intent);
 #endif
 		}
 	}

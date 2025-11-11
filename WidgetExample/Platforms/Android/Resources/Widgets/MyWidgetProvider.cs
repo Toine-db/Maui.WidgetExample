@@ -30,7 +30,15 @@ public class MyWidgetProvider : AppWidgetProvider
 	private static RemoteViews BuildRemoteViews(Context context)
 	{
 		var views = new RemoteViews(context.PackageName, Resource.Layout.mywidget_simple);
-		views.SetTextViewText(Resource.Id.widgetText, "Count: 5 (static)");
+
+		var currentCount = 0;
+		var incommingData = Preferences.Get(MainPage.SharedStorageAppOutgoingDataKey, int.MinValue, MainPage.SharedStorageGroupId);
+		if (incommingData != int.MinValue)
+		{
+			currentCount = incommingData;
+		}
+
+		views.SetTextViewText(Resource.Id.widgetText, $"Count: {currentCount}");
 
 		return views;
 	}
