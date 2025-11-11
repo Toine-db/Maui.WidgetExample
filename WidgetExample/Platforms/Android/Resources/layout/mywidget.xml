@@ -1,0 +1,52 @@
+﻿<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="0dp"
+              android:orientation="vertical"
+              android:background="@android:color/system_neutral1_50">
+
+    <TextView
+      android:id="@+id/widgetText"
+      android:text="0"
+      android:textSize="24sp"
+      android:textAlignment="center"
+      android:gravity="center"
+      android:textColor="@android:color/system_neutral1_900"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="4dp"
+      android:layout_marginBottom="4dp"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp"
+        android:paddingBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/widgetDecrementButton"
+            android:text="-"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:background="@android:color/system_accent1_600"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:gravity="center" />
+
+        <Button
+            android:id="@+id/widgetIncrementButton"
+            android:text="+"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:background="@android:color/system_accent1_600"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:gravity="center" />
+    </LinearLayout>
+
+</LinearLayout>

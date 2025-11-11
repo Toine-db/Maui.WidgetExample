@@ -1,6 +1,4 @@
-﻿using Android.Appwidget;
-
-namespace WidgetExample
+﻿namespace WidgetExample
 {
 	public partial class MainPage : ContentPage
 	{
@@ -133,7 +131,7 @@ namespace WidgetExample
 			var appWidgetIds = appWidgetManager?.GetAppWidgetIds(componentName);
 
 			// Create an intent to update the widget
-			var intent = new Android.Content.Intent(AppWidgetManager.ActionAppwidgetUpdate);
+			var intent = new Android.Content.Intent(Android.Appwidget.AppWidgetManager.ActionAppwidgetUpdate);
 			intent.SetPackage(context.PackageName); // only widgets from this app
 			intent.PutExtra(Android.Appwidget.AppWidgetManager.ExtraAppwidgetIds, appWidgetIds); // only widgets with these IDs
 

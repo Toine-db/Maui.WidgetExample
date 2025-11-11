@@ -1,35 +1,97 @@
 ﻿using Android.App;
 using Android.Appwidget;
 using Android.Content;
+using Android.OS;
 using Android.Widget;
 
 namespace WidgetExample.Platforms.Android.Resources.Widgets;
 
 [BroadcastReceiver(Label = "My Widget", Exported = true)]
-[IntentFilter(new[] { AppWidgetManager.ActionAppwidgetUpdate })]
+[IntentFilter(new[]
+{
+	// listens to these specific intents
+	AppWidgetManager.ActionAppwidgetUpdate,
+	IncrementCounterIntentAction,
+	DecrementCounterIntentAction
+})]
 [MetaData(AppWidgetManager.MetaDataAppwidgetProvider, Resource = "@xml/mywidget_provider_info")]
 public class MyWidgetProvider : AppWidgetProvider
 {
+	public const string IncrementCounterIntentAction = "com.enbyin.WidgetExample.INCREMENT_COUNTER";
+	public const string DecrementCounterIntentAction = "com.enbyin.WidgetExample.DECREMENT_COUNTER";
+
 	public override void OnUpdate(Context? context, AppWidgetManager? appWidgetManager, int[]? appWidgetIds)
 	{
 		if (context == null
-			|| appWidgetIds == null
-			|| appWidgetManager == null)
+			|| appWidgetManager == null
+			|| appWidgetIds == null)
 		{
 			return;
 		}
 
-		// Update all widgets for specified IDs
+		// only update when widgets specific ID is mentioned
 		foreach (var appWidgetId in appWidgetIds)
 		{
-			var views = BuildRemoteViews(context);
+			var views = BuildRemoteViews(context, appWidgetId);
 			appWidgetManager.UpdateAppWidget(appWidgetId, views);
 		}
 	}
 
-	private static RemoteViews BuildRemoteViews(Context context)
+	public override void OnReceive(Context? context, Intent? intent)
 	{
-		var views = new RemoteViews(context.PackageName, Resource.Layout.mywidget_simple);
+		if (intent == null
+			|| context == null)
+		{
+			base.OnReceive(context, intent);
+			return;
+		}
+
+		switch (intent.Action)
+		{
+			case IncrementCounterIntentAction:
+				{
+					var currentCount = Preferences.Get(MainPage.SharedStorageAppOutgoingDataKey, 0, MainPage.SharedStorageGroupId);
+					currentCount++;
+					Preferences.Set(MainPage.SharedStorageAppOutgoingDataKey, currentCount, MainPage.SharedStorageGroupId);
+
+					UpdateAllWidgets(context);
+					return;
+				}
+			case DecrementCounterIntentAction:
+				{
+					var currentCount = Preferences.Get(MainPage.SharedStorageAppOutgoingDataKey, 0, MainPage.SharedStorageGroupId);
+					currentCount--;
+					Preferences.Set(MainPage.SharedStorageAppOutgoingDataKey, currentCount, MainPage.SharedStorageGroupId);
+
+					UpdateAllWidgets(context);
+					return;
+				}
+		}
+
+		// this will trigger a OnUpdate() in this AppWidgetProvider during 'AppWidgetManager.ActionAppwidgetUpdate'
+		base.OnReceive(context, intent);
+	}
+
+	private static void UpdateAllWidgets(Context context)
+	{
+		var appWidgetManager = AppWidgetManager.GetInstance(context);
+		var thisWidget = new ComponentName(context, Java.Lang.Class.FromType(typeof(MyWidgetProvider)).Name);
+		var appWidgetIds = appWidgetManager?.GetAppWidgetIds(thisWidget);
+		if (appWidgetIds == null)
+		{
+			return;
+		}
+
+		foreach (var appWidgetId in appWidgetIds)
+		{
+			var views = BuildRemoteViews(context, appWidgetId);
+			appWidgetManager?.UpdateAppWidget(appWidgetId, views);
+		}
+	}
+
+	private static RemoteViews BuildRemoteViews(Context context, int widgetId)
+	{
+		var views = new RemoteViews(context.PackageName, Resource.Layout.mywidget);
 
 		var currentCount = 0;
 		var incommingData = Preferences.Get(MainPage.SharedStorageAppOutgoingDataKey, int.MinValue, MainPage.SharedStorageGroupId);
@@ -38,7 +100,35 @@ public class MyWidgetProvider : AppWidgetProvider
 			currentCount = incommingData;
 		}
 
-		views.SetTextViewText(Resource.Id.widgetText, $"Count: {currentCount}");
+		views.SetTextViewText(Resource.Id.widgetText, $"{currentCount}");
+
+		// unique request code for 'pending' intents:
+		// they must be unique within package + action + flags, otherwise the pending intent will be overwritten/shared
+		// this can be important when an intent action must be fonr by a specific WidgetId, but this is not always required
+		var incrementRequestCode = widgetId * 100 + 1;
+		var decrementRequestCode = widgetId * 100 + 2;
+
+		// Attach intent to increment button
+		var incrementIntent = new Intent(context, typeof(MyWidgetProvider));
+		incrementIntent.SetAction(IncrementCounterIntentAction);
+		var incrementPendingIntent = PendingIntent.GetBroadcast(
+			context,
+			incrementRequestCode,
+			incrementIntent,
+			PendingIntentFlags.UpdateCurrent | (Build.VERSION.SdkInt >= BuildVersionCodes.S ? PendingIntentFlags.Mutable : 0)
+		);
+		views.SetOnClickPendingIntent(Resource.Id.widgetIncrementButton, incrementPendingIntent);
+
+		// Attach intent to decrement button
+		var decrementIntent = new Intent(context, typeof(MyWidgetProvider));
+		decrementIntent.SetAction(DecrementCounterIntentAction);
+		var decrementPendingIntent = PendingIntent.GetBroadcast(
+			context,
+			decrementRequestCode,
+			decrementIntent,
+			PendingIntentFlags.UpdateCurrent | (Build.VERSION.SdkInt >= BuildVersionCodes.S ? PendingIntentFlags.Mutable : 0)
+		);
+		views.SetOnClickPendingIntent(Resource.Id.widgetDecrementButton, decrementPendingIntent);
 
 		return views;
 	}
