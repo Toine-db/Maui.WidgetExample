@@ -19,6 +19,8 @@ public class MyWidgetProvider : AppWidgetProvider
 {
 	public const string IncrementCounterIntentAction = "com.enbyin.WidgetExample.INCREMENT_COUNTER";
 	public const string DecrementCounterIntentAction = "com.enbyin.WidgetExample.DECREMENT_COUNTER";
+	public const string WidgetToAppSilentIntentAction = "com.enbyin.WidgetExample.WIDGET_TO_APP_SILENT_TRIGGER";
+	public const string WidgetToAppSilentExtraValueField = "my_counter";
 
 	public override void OnUpdate(Context? context, AppWidgetManager? appWidgetManager, int[]? appWidgetIds)
 	{
@@ -52,18 +54,26 @@ public class MyWidgetProvider : AppWidgetProvider
 				{
 					var currentCount = SharedStorageHelper.GetBestStoredDataCount();
 					currentCount++;
-					Preferences.Set(MainPage.SharedStorageAppIncommingDataKey, currentCount, MainPage.SharedStorageGroupId);
 
-					UpdateAllWidgets(context);
+					// Send silent trigger to app, that will in background do the logic and refresh this widget remotely
+					var silentIntent = new Intent(context, typeof(WidgetSilentReceiver));
+					silentIntent.SetAction(WidgetToAppSilentIntentAction);
+					silentIntent.PutExtra(WidgetToAppSilentExtraValueField, currentCount);
+					silentIntent.SetPackage(context.PackageName);
+
+					context.SendBroadcast(silentIntent);
+
 					return;
 				}
 			case DecrementCounterIntentAction:
 				{
 					var currentCount = SharedStorageHelper.GetBestStoredDataCount();
 					currentCount--;
-					Preferences.Set(MainPage.SharedStorageAppIncommingDataKey, currentCount, MainPage.SharedStorageGroupId);
 
+					// Do logic and refreshing view here in widget
+					Preferences.Set(MainPage.SharedStorageAppIncommingDataKey, currentCount, MainPage.SharedStorageGroupId);
 					UpdateAllWidgets(context);
+
 					return;
 				}
 		}

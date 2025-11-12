@@ -122,7 +122,7 @@
 #endif
 		}
 
-		private static void RefreshWidget()
+		public static void RefreshWidget()
 		{
 #if IOS
 			var widgetCenterProxy = new WidgetKit.WidgetCenterProxy();
