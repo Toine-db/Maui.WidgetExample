@@ -107,6 +107,7 @@ public class MyWidgetProvider : AppWidgetProvider
 		// this can be important when an intent action must be fonr by a specific WidgetId, but this is not always required
 		var incrementRequestCode = widgetId * 100 + 1;
 		var decrementRequestCode = widgetId * 100 + 2;
+		var openAppRequestCode = widgetId * 100 + 3;
 
 		// Attach intent to increment button
 		var incrementIntent = new Intent(context, typeof(MyWidgetProvider));
@@ -129,6 +130,18 @@ public class MyWidgetProvider : AppWidgetProvider
 			PendingIntentFlags.UpdateCurrent | (Build.VERSION.SdkInt >= BuildVersionCodes.S ? PendingIntentFlags.Mutable : 0)
 		);
 		views.SetOnClickPendingIntent(Resource.Id.widgetDecrementButton, decrementPendingIntent);
+
+		// Attach intent to open the app when widget background/text is tapped
+		var openAppIntent = new Intent(Intent.ActionView);
+		openAppIntent.SetData(global::Android.Net.Uri.Parse($"{App.UrlScheme}://{App.UrlHost}?counter={currentCount}"));
+		openAppIntent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTop);
+		var openAppPendingIntent = PendingIntent.GetActivity(
+			context,
+			openAppRequestCode,
+			openAppIntent,
+			PendingIntentFlags.UpdateCurrent | (Build.VERSION.SdkInt >= BuildVersionCodes.S ? PendingIntentFlags.Immutable : 0)
+		);
+		views.SetOnClickPendingIntent(Resource.Id.widgetText, openAppPendingIntent);
 
 		return views;
 	}
