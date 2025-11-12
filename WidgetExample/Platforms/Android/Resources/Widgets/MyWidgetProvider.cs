@@ -82,7 +82,7 @@ public class MyWidgetProvider : AppWidgetProvider
 		base.OnReceive(context, intent);
 	}
 
-	private static void UpdateAllWidgets(Context context)
+	public static void UpdateAllWidgets(Context context)
 	{
 		var appWidgetManager = AppWidgetManager.GetInstance(context);
 		var thisWidget = new ComponentName(context, Java.Lang.Class.FromType(typeof(MyWidgetProvider)).Name);
@@ -96,6 +96,21 @@ public class MyWidgetProvider : AppWidgetProvider
 		{
 			var views = BuildRemoteViews(context, appWidgetId);
 			appWidgetManager?.UpdateAppWidget(appWidgetId, views);
+		}
+	}
+
+	public override void OnDeleted(Context? context, int[]? appWidgetIds)
+	{
+		base.OnDeleted(context, appWidgetIds);
+
+		if (context == null || appWidgetIds == null)
+		{
+			return;
+		}
+
+		foreach (var widgetId in appWidgetIds)
+		{
+			WidgetConfigurationActivity.DeleteWidgetConfiguration(widgetId);
 		}
 	}
 
@@ -125,6 +140,10 @@ public class MyWidgetProvider : AppWidgetProvider
 
 		views.SetTextViewText(Resource.Id.widgetText, $"{currentCount}");
 		views.SetTextViewText(Resource.Id.widgetMessage, message);
+
+		var favoriteConfiguredEmoji = WidgetConfigurationActivity.GetConfiguredEmoji(widgetId);
+		views.SetTextViewText(Resource.Id.widgetEmojiLeft, favoriteConfiguredEmoji);
+		views.SetTextViewText(Resource.Id.widgetEmojiRight, favoriteConfiguredEmoji);
 
 		// unique request code for 'pending' intents:
 		// they must be unique within package + action + flags, otherwise the pending intent will be overwritten/shared
