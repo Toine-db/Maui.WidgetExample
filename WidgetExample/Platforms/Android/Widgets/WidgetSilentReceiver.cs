@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
 
-namespace WidgetExample.Platforms.Android.Resources.Widgets;
+namespace WidgetExample.Platforms.Android.Widgets;
 
 [BroadcastReceiver(Exported = true)]
 [IntentFilter([

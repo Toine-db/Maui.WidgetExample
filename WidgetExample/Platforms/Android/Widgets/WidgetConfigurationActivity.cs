@@ -8,7 +8,7 @@ using Android.Widget;
 
 using Button = global::Android.Widget.Button;
 
-namespace WidgetExample.Platforms.Android.Resources.Widgets;
+namespace WidgetExample.Platforms.Android.Widgets;
 
 [Activity(Label = "Configure Widget",
 	Exported = true,

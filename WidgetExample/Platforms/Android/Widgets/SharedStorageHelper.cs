@@ -1,4 +1,4 @@
-﻿namespace WidgetExample.Platforms.Android.Resources.Widgets;
+﻿namespace WidgetExample.Platforms.Android.Widgets;
 
 internal static class SharedStorageHelper
 {

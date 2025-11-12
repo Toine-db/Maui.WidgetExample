@@ -134,7 +134,7 @@
 
 			// Use AppWidgetManager to get all widget IDs for this provider
 			var appWidgetManager = Android.Appwidget.AppWidgetManager.GetInstance(context);
-			var componentName = new Android.Content.ComponentName(context, Java.Lang.Class.FromType(typeof(Platforms.Android.Resources.Widgets.MyWidgetProvider)));
+			var componentName = new Android.Content.ComponentName(context, Java.Lang.Class.FromType(typeof(Platforms.Android.Widgets.MyWidgetProvider)));
 			var appWidgetIds = appWidgetManager?.GetAppWidgetIds(componentName);
 
 			// Create an intent to update the widget
