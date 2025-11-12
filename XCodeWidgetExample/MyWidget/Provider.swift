@@ -1,4 +1,4 @@
-//
+﻿//
 //  Provider.swift
 //  XCodeWidgetExample
 //
@@ -51,6 +51,9 @@ struct Provider: AppIntentTimelineProvider {
             
             currentCount = SharedStorage().getOutgoingDataCount()
             if (currentCount == Int32.min) {
+                currentCount = 0
+            }
+            else {
                 message = "value received from app"
             }
         }
