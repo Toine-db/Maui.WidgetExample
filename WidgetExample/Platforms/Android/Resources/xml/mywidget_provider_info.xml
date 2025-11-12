@@ -7,4 +7,4 @@
     android:initialLayout="@layout/mywidget"
     android:resizeMode="horizontal|vertical"
     android:widgetCategory="home_screen"
-    android:previewLayout="@layout/mywidget" />
+    android:previewImage="@drawable/mywidget_preview_image" />
