@@ -57,6 +57,9 @@
 
 			Count = incommingCount;
 			Message = "value set by opening URL";
+
+			// Sync outgoing data to same value
+			Preferences.Set(SharedStorageAppOutgoingDataKey, Count, SharedStorageGroupId);
 		}
 
 		private void LoadIncomingData()
@@ -67,6 +70,10 @@
 			{
 				Message = "value set by incomming data";
 				Count = incommingData;
+
+				// Sync outgoing data to same value
+				Preferences.Set(SharedStorageAppOutgoingDataKey, Count, SharedStorageGroupId);
+
 				// clear the incomming data after reading it
 				Preferences.Set(SharedStorageAppIncommingDataKey, int.MinValue, SharedStorageGroupId);
 			}

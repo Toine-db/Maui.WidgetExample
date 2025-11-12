@@ -50,18 +50,18 @@ public class MyWidgetProvider : AppWidgetProvider
 		{
 			case IncrementCounterIntentAction:
 				{
-					var currentCount = Preferences.Get(MainPage.SharedStorageAppOutgoingDataKey, 0, MainPage.SharedStorageGroupId);
+					var currentCount = SharedStorageHelper.GetBestStoredDataCount();
 					currentCount++;
-					Preferences.Set(MainPage.SharedStorageAppOutgoingDataKey, currentCount, MainPage.SharedStorageGroupId);
+					Preferences.Set(MainPage.SharedStorageAppIncommingDataKey, currentCount, MainPage.SharedStorageGroupId);
 
 					UpdateAllWidgets(context);
 					return;
 				}
 			case DecrementCounterIntentAction:
 				{
-					var currentCount = Preferences.Get(MainPage.SharedStorageAppOutgoingDataKey, 0, MainPage.SharedStorageGroupId);
+					var currentCount = SharedStorageHelper.GetBestStoredDataCount();
 					currentCount--;
-					Preferences.Set(MainPage.SharedStorageAppOutgoingDataKey, currentCount, MainPage.SharedStorageGroupId);
+					Preferences.Set(MainPage.SharedStorageAppIncommingDataKey, currentCount, MainPage.SharedStorageGroupId);
 
 					UpdateAllWidgets(context);
 					return;
@@ -93,14 +93,28 @@ public class MyWidgetProvider : AppWidgetProvider
 	{
 		var views = new RemoteViews(context.PackageName, Resource.Layout.mywidget);
 
-		var currentCount = 0;
-		var incommingData = Preferences.Get(MainPage.SharedStorageAppOutgoingDataKey, int.MinValue, MainPage.SharedStorageGroupId);
-		if (incommingData != int.MinValue)
+		var message = string.Empty;
+
+		// not the best mechanism but for works fine for this demo
+		// - incomming data is set by Widget, has prio 1
+		// - outgoing data is set by app, has prio 2
+		// - incomming data is reset as soon as app starts, making outgoing data visible
+		var currentCount = Preferences.Get(MainPage.SharedStorageAppIncommingDataKey, int.MinValue, MainPage.SharedStorageGroupId);
+		if (currentCount == int.MinValue) // check if default value is found, no data
 		{
-			currentCount = incommingData;
+			currentCount = Preferences.Get(MainPage.SharedStorageAppOutgoingDataKey, int.MinValue, MainPage.SharedStorageGroupId);
+			if (currentCount == int.MinValue)  // check if default value is found, no data
+			{
+				currentCount = 0;
+			}
+			else
+			{
+				message = "value received from app";
+			}
 		}
 
 		views.SetTextViewText(Resource.Id.widgetText, $"{currentCount}");
+		views.SetTextViewText(Resource.Id.widgetMessage, message);
 
 		// unique request code for 'pending' intents:
 		// they must be unique within package + action + flags, otherwise the pending intent will be overwritten/shared
