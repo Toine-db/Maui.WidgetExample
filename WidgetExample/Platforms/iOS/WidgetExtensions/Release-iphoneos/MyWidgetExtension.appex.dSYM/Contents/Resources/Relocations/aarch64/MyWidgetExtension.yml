@@ -1,5 +1,0 @@
----
-triple:          'arm64-apple-darwin'
-binary-path:     '/Users/toinedeboer/repos/Maui.WidgetExample/XCodeWidgetExample/XReleases/Release-iphoneos/MyWidgetExtension.appex/MyWidgetExtension'
-relocations:     []
-...

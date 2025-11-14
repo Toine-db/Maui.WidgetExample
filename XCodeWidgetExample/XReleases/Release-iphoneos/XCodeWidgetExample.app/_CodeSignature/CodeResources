@@ -18,7 +18,7 @@
 		</data>
 		<key>PlugIns/MyWidgetExtension.appex/Metadata.appintents/extract.actionsdata</key>
 		<data>
-		mEJv3jfO+9iqLGTE09ZXD854zBk=
+		2QRL3qw0fIAvCX7LmsLfuytG3XE=
 		</data>
 		<key>PlugIns/MyWidgetExtension.appex/Metadata.appintents/version.json</key>
 		<data>
@@ -26,11 +26,11 @@
 		</data>
 		<key>PlugIns/MyWidgetExtension.appex/MyWidgetExtension</key>
 		<data>
-		BFSw4XT9/0Nc7Sxwtj7F6WCSNTc=
+		+ju/wwFjUOo3D77u5n5jfoe8i08=
 		</data>
 		<key>PlugIns/MyWidgetExtension.appex/_CodeSignature/CodeResources</key>
 		<data>
-		I6d9gDk1BOXJXVQQe+Qn/UUnTWA=
+		5CLTM8WaLdOtYN4QmE3mXTwat+U=
 		</data>
 		<key>PlugIns/MyWidgetExtension.appex/embedded.mobileprovision</key>
 		<data>
@@ -54,7 +54,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			A6xXNrG1wpA5OfHzBFhoPu/+mMyZYtMYVdXq1MWSGBs=
+			FGuykEMptwhx95sEQcvmj77FiLI8ZUowAy87cNrU/+Y=
 			</data>
 		</dict>
 		<key>PlugIns/MyWidgetExtension.appex/Metadata.appintents/version.json</key>
@@ -68,14 +68,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			SlyvaY57IunjZZkNhZeNe1vx0DJ/qpNieec/MpKIhEs=
+			GmbJwFa1mwpf6UIObqFrtGBMgKaR72nc0cjl5DXqzQo=
 			</data>
 		</dict>
 		<key>PlugIns/MyWidgetExtension.appex/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FZarTkXQF3WpXs4aYwdnaqzOFmK+0sNS5ys2V6AiRiE=
+			uW2VI5c+sCwyrSotQHqG8W1hA0JDST+K3OwejXXKTvE=
 			</data>
 		</dict>
 		<key>PlugIns/MyWidgetExtension.appex/embedded.mobileprovision</key>
