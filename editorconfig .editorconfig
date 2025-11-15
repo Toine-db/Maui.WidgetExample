@@ -1,0 +1,10 @@
+﻿root = true
+
+# Default settings
+[*]
+charset = utf-8
+insert_final_newline = true
+
+# Force LF for all .plist files
+[*.plist]
+end_of_line = lf

@@ -1,0 +1,2 @@
+﻿# Force LF line endings for all .plist files
+*.plist text eol=lf
